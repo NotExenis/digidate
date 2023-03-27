@@ -8,8 +8,6 @@ $stmt->execute();
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <form action="" name="gender" ></form>
-
         </div>
         <div class="col-sm">
             <form method="POST" action="php/register.php" enctype="multipart/form-data">
