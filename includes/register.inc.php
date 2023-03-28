@@ -13,27 +13,27 @@ $stmt->execute();
         <div class="col-sm">
             <form method="POST" action="php/register.php" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
+                    <label for="email">Email</label>
                     <input class="form-control" name="email" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
+                    <label for="password1">Password</label>
                     <input class="form-control"  type="password" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Double check password</label>
+                    <label for="password2">Double check password</label>
                     <input class="form-control"  type="password" name="confirm_password" placeholder="Confirm password">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Name</label>
+                    <label for="name">Name</label>
                     <input class="form-control" name="name" placeholder="Name">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Address</label>
+                    <label for="address">Address</label>
                     <input class="form-control" name="address" placeholder="Address">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">date of birth</label>
+                    <label for="birthdate">date of birth</label>
                     <input id="datepicker" type="date" />
                     <script>
                         // Een functie om de datum in het formaat YYYY-MM-DD te krijgen
@@ -68,11 +68,11 @@ $stmt->execute();
                     </script>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">City</label>
+                    <label for="city">City</label>
                     <input class="form-control" name="city" placeholder="City">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Gender</label>
+                    <label for="gender">Gender</label>
                     <select name="gender" id="gender">
                         <?php foreach ($stmt as $r) { ?>
                             <option name="gender" value="<?= $r['gender'] ?>"><?= $r['gender'] ?></option>
@@ -80,11 +80,11 @@ $stmt->execute();
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">phone number</label>
+                    <label for="phone">phone number</label>
                     <input class="form-control" name="phone" placeholder="phone number">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">preference</label>
+                    <label for="preference">preference</label>
                     <select name="preference" id="preference">
                         <?php $stmt->execute();
                         foreach ($stmt as $r) { ?>
