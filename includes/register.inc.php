@@ -3,13 +3,17 @@ require 'private/conn.php';
 $sql = 'SELECT * FROM tbl_gender';
 $stmt = $db->prepare($sql);
 $stmt->execute();
+
+$sql2 = "SELECT * FROM tbl_tags";
+$stmt2 = $db->prepare($sql2);
+$stmt2->execute();
+
 ?>
 
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <form action="" name="gender" ></form>
-
+            <form action="" name="gender"></form>
         </div>
         <div class="col-sm">
             <form method="POST" action="php/register.php" enctype="multipart/form-data">
@@ -55,6 +59,15 @@ $stmt->execute();
                         <?php $stmt->execute();
                         foreach ($stmt as $r) { ?>
                             <option name="preference" value="<?= $r['gender'] ?>"><?= $r['gender'] ?></option>
+                        <?php } ?>
+                    </select>
+                    <br>
+                    <!-- TODO: niet meer dan 5 selectable, wisdom met js, https://stackoverflow.com/questions/4135210/html-multiselect-limit -->
+                    <!-- For windows: Hold down the control (ctrl) button to select multiple options
+                        For Mac: Hold down the command button to select multiple options -->
+                    <select name="tag_id[]" required multiple="multiple">
+                        <?php foreach ($stmt2 as $r2) { ?>
+                            <option name="tag_id[]" value="<?= $r2['tag_id'] ?>"><?= $r2['tag_name']  ?></option>
                         <?php } ?>
                     </select>
                 </div>
