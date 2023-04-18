@@ -21,7 +21,7 @@ $stmt->execute();
                     <input class="form-control"  type="password" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
-                    <label for="password2">Double check password</label>
+                    <label for="password2">Confirm password</label>
                     <input class="form-control"  type="password" name="confirm_password" placeholder="Confirm password">
                 </div>
                 <div class="form-group">
