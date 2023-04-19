@@ -8,8 +8,7 @@ if(isset($_GET['page'])){
   }else{
     $page = $_GET['page'];
   }
-}
-else{
+}else{
   $page = "login";
 }
 ?>
