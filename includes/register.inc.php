@@ -30,7 +30,7 @@ $stmt2->execute();
                     <input class="form-control"  type="password" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
-                    <label for="password2">Double check password</label>
+                    <label for="password2">Confirm password</label>
                     <input class="form-control"  type="password" name="confirm_password" placeholder="Confirm password">
                 </div>
                 <div class="form-group">
@@ -45,36 +45,50 @@ $stmt2->execute();
                     <label for="birthdate">date of birth</label>
                     <input id="datepicker" type="date" />
                     <script>
-                        // Een functie om de datum in het formaat YYYY-MM-DD te krijgen
-                        function formatDate(date) {
-                            let year = date.getFullYear();
-                            let month = date.getMonth() + 1;
-                            let day = date.getDate();
-                            if (month < 10) {
-                                month = "0" + month;
-                            }
-                            if (day < 10) {
-                                day = "0" + day;
-                            }
-                            return year + "-" + month + "-" + day;
-                        }
+  // Een functie om de datum in het formaat jaar maand dag te krijgen
+  function formatDate(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    if (month < 10) {
+      month = "0" + month;
+    }
+    if (day < 10) {
+      day = "0" + day;
+    }
+    return year + "-" + month + "-" + day;
+  }
 
-                        // De huidige datum krijgen
-                        let today = new Date();
+  // De huidige datum krijgen
+  let today = new Date();
 
-                        // De datum van 18 jaar geleden krijgen
-                        let minAge = new Date(today);
-                        minAge.setFullYear(minAge.getFullYear() - 18);
+  // De datum van 18 jaar geleden krijgen
+  let minAge = new Date(today);
+  minAge.setFullYear(minAge.getFullYear() - 18);
 
-                        // De datum van 100 jaar geleden krijgen
-                        let maxAge = new Date(today);
-                        maxAge.setFullYear(maxAge.getFullYear() - 100);
+  // De datum van 100 jaar geleden krijgen
+  let maxAge = new Date(today);
+  maxAge.setFullYear(maxAge.getFullYear() - 120);
 
-                        // De min- en max-attributen instellen op basis van de berekende datums
-                        let datepicker = document.getElementById("datepicker");
-                        datepicker.setAttribute("min", formatDate(maxAge));
-                        datepicker.setAttribute("max", formatDate(minAge));
-                    </script>
+  // De min- en max-attributen instellen op basis van de berekende datums
+  let datepicker = document.getElementById("datepicker");
+  datepicker.setAttribute("min", formatDate(maxAge));
+  datepicker.setAttribute("max", formatDate(minAge));
+  
+  // Controleer of de geselecteerde datum meer dan 18 jaar in het verleden ligt
+  datepicker.addEventListener("input", function() {
+    let selectedDate = new Date(datepicker.value);
+    let ageDiffMs = Date.now() - selectedDate.getTime();
+    let ageDate = new Date(ageDiffMs);
+    let age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    
+    if (age < 18) {
+      alert("Je moet 18 jaar of ouder zijn");
+      datepicker.value = "";
+    }
+  });
+</script>
+
                 </div>
                 <div class="form-group">
                     <label for="city">City</label>
