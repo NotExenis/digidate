@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input class="form-control" type="password" placeholder="Enter password" name="password">
+                    <input class="form-control" type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" placeholder="Enter password" name="password">
                 </div>
             <a class="text-secondary"href="index.php?page=forget_password">Forgot your password? Click here</a>
                 <button type="submit" class="btn btn-primary">Submit</button>
