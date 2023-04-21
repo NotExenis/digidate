@@ -27,11 +27,11 @@ $stmt2->execute();
                 </div>
                 <div class="form-group">
                     <label for="password1">Password</label>
-                    <input class="form-control"  type="password" name="password" placeholder="Password">
+                    <input class="form-control"  type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <label for="password2">Confirm password</label>
-                    <input class="form-control"  type="password" name="confirm_password" placeholder="Confirm password">
+                    <input class="form-control"  type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" name="confirm_password" placeholder="Confirm password">
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>
