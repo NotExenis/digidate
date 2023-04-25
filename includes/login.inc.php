@@ -6,20 +6,27 @@
         <div class="col-sm">
                 <p class="text-danger">
                     <?php
-                    if(isset($_SESSION['loginmelding'])){
-                        echo $_SESSION['loginmelding'];
-                        unset($_SESSION['loginmelding']);
+                    if(isset($_SESSION['accepted'])){
+                        echo $_SESSION['accepted'];
+                        unset($_SESSION['accepted']);
                     }
                     ?>
                 </p>
                 <div class="form-group">
                     <form method="post" action="php/login.php">
-                    <label for="exampleInputEmail1">Email address</label>
+                        <?php
+
+                        if(isset($_SESSION['login_error']) && $_SESSION['login_error'] === true) {
+                            echo '<p class="error">Password is incorrect</p>';
+                            unset($_SESSION['login_error']);
+                        }
+                        ?>
+                            <label for="exampleInputEmail1">Email address</label>
                     <input class="form-control" name="email"  placeholder="Enter email">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input class="form-control" type="password"  placeholder="Enter password" name="password">
+                    <input class="form-control" type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" placeholder="Enter password" name="password">
                 </div>
             <a class="text-secondary"href="index.php?page=forget_password">Forgot your password? Click here</a>
                 <button type="submit" class="btn btn-primary">Submit</button>
