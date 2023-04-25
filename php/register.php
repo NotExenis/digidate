@@ -100,7 +100,7 @@ $sql = "INSERT INTO tbl_users(user_name, user_phone_number, user_address, user_c
 
 
     } else {
-        echo 'Email address already exists. Please try again with a different email address.';
+        $_SESSION['email'] = 'Email address already exists. Please try again with a different email address.';
         header("refresh:3;url=../index.php?page=register");
 
     }

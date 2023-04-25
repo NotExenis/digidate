@@ -10,6 +10,14 @@ $stmt->execute();
 <div class="container">
     <div class="row">
         <div class="col-sm">
+        <p class="text-danger">
+                    <?php
+                    if(isset($_SESSION['email'])){
+                        echo $_SESSION['email'];
+                        unset($_SESSION['email']);
+                    }
+                    ?>
+                </p>
         </div>
         <div class="col-sm">
             <form method="POST" action="php/admin_add.php">

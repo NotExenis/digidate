@@ -40,9 +40,10 @@ $sql = "INSERT INTO tbl_users(user_name, user_phone_number, user_address, user_c
             ':accepted' => $accept_bool,
         ));
     } else {
+        $_SESSION['email'] = 'Email is al in gebruik';
         header('location:../index.php?page=admin_add');
 
     }
-        header('location:../index.php?page=admin_dashboard');
+header('location:../index.php?page=admin_dashboard');
 
 ?>

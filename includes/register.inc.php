@@ -19,6 +19,14 @@ $stmt2->execute();
 
 >>>>>>> 7afd344ce6fa7af6d001dbf91e3e48fa5e62d167
         </div>
+        <p class="text-danger">
+                    <?php
+                    if(isset($_SESSION['email'])){
+                        echo $_SESSION['email'];
+                        unset($_SESSION['email']);
+                    }
+                    ?>
+                </p>
         <div class="col-sm">
             <form method="POST" action="php/register.php" enctype="multipart/form-data">
                 <div class="form-group">
