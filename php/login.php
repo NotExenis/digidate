@@ -18,27 +18,32 @@ $_SESSION['id'] = $r['user_id'];
 $_SESSION['role'] = $r['user_role'];
 $_SESSION['naam'] = $r['user_name'];
 $_SESSION['accepted'] = $r['user_accepted'];
-    if(isset($_SESSION['user_role'])){
-        if($_SESSION['user_role'] == 'admin'){
-            header('Location: ../index.php?page=home_admin');
-        } elseif ($_SESSION['user_role'] == 'user'){
-            header('Location: ../index.php?page=home');
-        } elseif($_SESSION['accepted'] == 0 && $_SESSION['role'] != 'admin'){
-            header('Location: ../index.php?page=waiting_list');
-        }
-    } else{
-// Check if user_status is 'notactive' and redirect to verify page
-    if ($r['user_status'] == 'notactive') {
-        header('Location: ../index.php?page=verify');
-    } else {
-// Otherwise redirect to appropriate home page
-    if($_SESSION['user_role'] == 'admin'){
-        header('Location: ../index.php?page=home_admin');
-    } else {
-        header('Location: ../index.php?page=home');
-    }
-    }
-}} else {
-    $_SESSION['loginmelding'] = 'Email of wachtwoord klopt niet';
-    header('location: ../index.php?page=login');
+if(isset($_SESSION['user_role'])){
+if($_SESSION['user_role'] == 'admin'){
+header('Location: ../index.php?page=home_admin');
+} elseif ($_SESSION['user_role'] == 'user'){
+header('Location: ../index.php?page=home');
+} elseif($_SESSION['accepted'] == 0 && $_SESSION['role'] != 'admin'){
+header('Location: ../index.php?page=waiting_list');
 }
+}
+else{
+if ($r['user_status'] == 'notactive') {
+header('Location: ../index.php?page=verify');
+} else {
+// Otherwise redirect to appropriate home page
+if($_SESSION['user_role'] == 'admin'){
+
+header('Location: ../index.php?page=home_admin');
+} else {
+header('Location: ../index.php?page=home');
+}
+}
+}
+} else {
+    $_SESSION['login_error'] = true;
+    header('location: ../index.php?page=login');
+    exit;
+}
+
+$_SESSION['login_success'] = true;
