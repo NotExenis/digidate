@@ -17,7 +17,7 @@
                         <?php
 
                         if(isset($_SESSION['login_error']) && $_SESSION['login_error'] === true) {
-                            echo '<p class="error">Password is incorrect</p>';
+                            echo '<div class="alert alert-primary">Password is incorrect</div>';
                             unset($_SESSION['login_error']);
                         }
                         ?>
