@@ -17,9 +17,12 @@ $r = $stmt->fetch();
         <div class="col-sm">
         </div>
         <div class="col-sm">
-            <form method="POST">
+            <form method="post" action="../php/edit.php">
             <img src="data:image/png;base64, <?= $r['user_photo'] ?>" width=250 height=250>
+             <input type="submit" class="btn btn-primary" name="submit" value="wijzig gegevens">
+
                 <div class="form-group">
+
                     <label for="exampleInputEmail1">Email</label>
                     <input class="form-control" name="email" placeholder="Enter email"  value="<?= $r['user_email'] ?>" readonly>
                 </div>
