@@ -13,20 +13,8 @@ $stmt2->execute();
 <div class="container">
     <div class="row">
         <div class="col-sm">
-<<<<<<< HEAD
-            <form action="" name="gender"></form>
-=======
 
->>>>>>> 7afd344ce6fa7af6d001dbf91e3e48fa5e62d167
         </div>
-        <p class="text-danger">
-                    <?php
-                    if(isset($_SESSION['email'])){
-                        echo $_SESSION['email'];
-                        unset($_SESSION['email']);
-                    }
-                    ?>
-                </p>
         <div class="col-sm">
             <form method="POST" action="php/register.php" enctype="multipart/form-data">
                 <div class="form-group">
@@ -34,24 +22,37 @@ $stmt2->execute();
                     <input class="form-control" name="email" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                    <label for="password1">Password</label>
-                    <input class="form-control"  type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" name="password" placeholder="Password">
+                    <label for="password1">Password</label> P@ssword!@1
+                    <input class="form-control" type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" name="password" placeholder="Password">
+                    <?php
+
+                    if(isset($_SESSION['password_error']) && $_SESSION['password_error'] === true) {
+                        echo '<p class="error">Password is incorrect</p>';
+                        unset($_SESSION['password_error']);
+                    }
+                    ?>
                 </div>
                 <div class="form-group">
-                    <label for="password2">Confirm password</label>
+                    <label for="password2">Confirm password</label> P@ssword!@1
                     <input class="form-control"  type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" name="confirm_password" placeholder="Confirm password">
                 </div>
                 <div class="form-group">
+
+
                     <label for="name">Name</label>
                     <input class="form-control" name="name" placeholder="Name">
+                    <?php
+
+                    if(isset($_SESSION['name_error']) && $_SESSION['name_error'] === true) {
+                        echo '<p class="error">Fill in your name..</p>';
+                        unset($_SESSION['name_error']);
+                    }
+                    ?>
                 </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input class="form-control" name="address" placeholder="Address">
-                </div>
+
                 <div class="form-group">
                     <label for="birthdate">date of birth</label>
-                    <input id="datepicker" type="date" />
+                    <input id="datepicker" name="birthday" type="date" />
                     <script>
   // Een functie om de datum in het formaat jaar maand dag te krijgen
   function formatDate(date) {
@@ -91,16 +92,12 @@ $stmt2->execute();
     let age = Math.abs(ageDate.getUTCFullYear() - 1970);
     
     if (age < 18) {
-      alert("Je moet 18 jaar of ouder zijn");
+      alert("You need to be 18 years or older");
       datepicker.value = "";
     }
   });
 </script>
 
-                </div>
-                <div class="form-group">
-                    <label for="city">City</label>
-                    <input class="form-control" name="city" placeholder="City">
                 </div>
                 <div class="form-group">
                     <label for="gender">Gender</label>
@@ -114,6 +111,24 @@ $stmt2->execute();
                     <label for="phone">phone number</label>
                     <input class="form-control" name="phone" placeholder="phone number">
                 </div>
+                <input type="hidden" name="latitude" id="latitude">
+                <input type="hidden" name="longitude" id="longitude">
+                <script>
+                // gebruiker moet wel toestemming geven voor waar hij of zij is
+                //if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            // afstand wordt opgeslagen in latitude enn longitude
+
+                            document.getElementById('latitude').value = position.coords.latitude;
+                            document.getElementById('longitude').value = position.coords.longitude;
+                        }, function(error) {
+                            console.error('location error bericht: ' + error.code + ': ' + error.message);
+                        });
+                    } else {
+                        console.error('Location is not supported by your browser.');
+                    }
+                </script>
+
                 <div class="form-group">
                     <label for="preference">preference</label>
                     <select name="preference" id="preference">
@@ -126,14 +141,75 @@ $stmt2->execute();
                     <!-- TODO: niet meer dan 5 selectable, wisdom met js, https://stackoverflow.com/questions/4135210/html-multiselect-limit -->
                     <!-- For windows: Hold down the control (ctrl) button to select multiple options
                         For Mac: Hold down the command button to select multiple options -->
-                    <select name="tag_id[]" required multiple="multiple">
-                        <?php foreach ($stmt2 as $r2) { ?>
-                            <option name="tag_id[]" value="<?= $r2['tag_id'] ?>"><?= $r2['tag_name']  ?></option>
-                        <?php } ?>
-                    </select>
+
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Anime"> Anime
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Avontuur"> Avontuur
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Boeken"> Boeken
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Netflix"> Netflix
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Politiek"> Politiek
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Anime"> Anime
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Avontuur"> Avontuur
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Bier"> Bier
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Boeken"> Boeken
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Camperen"> Camperen
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Comedie"> Comedie
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Concerten"> Concerten
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Dieren"> Dieren
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Eten"> Eten
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Familie"> Familie
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Feesten"> Feesten
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Gamen"> Gamen
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="God"> God
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Gym"> Gym
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Koken"> Koken
+                        </label>
+                        <label>
+                            <input type="checkbox" name="likes[]" value="Muziek"> Muziek
+                        </label>
+
+
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Default file input example</label>
+                    <label for="formFile" class="form-label">Your best profile picture!</label>
                     <input class="form-control" name="pic" type="file" id="formFile">
                 </div>
                 <div class="mb-3">
