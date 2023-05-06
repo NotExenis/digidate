@@ -22,7 +22,7 @@ $stmt2->execute();
                     <input class="form-control" name="email" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                    <label for="password1">Password</label> P@ssword!@1
+                    <label for="password1">Password</label> voorbeeld voor login pattern: P@ssword!@1
                     <input class="form-control" type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" name="password" placeholder="Password">
                     <?php
 
@@ -33,7 +33,7 @@ $stmt2->execute();
                     ?>
                 </div>
                 <div class="form-group">
-                    <label for="password2">Confirm password</label> P@ssword!@1
+                    <label for="password2">Confirm password</label> voorbeeld voor login pattern: P@ssword!@1
                     <input class="form-control"  type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" name="confirm_password" placeholder="Confirm password">
                 </div>
                 <div class="form-group">
