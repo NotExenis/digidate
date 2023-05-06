@@ -43,13 +43,13 @@ if(empty($_POST['name'])) {
 if(empty($_POST['password'])) {
     $_SESSION['password_error'] = true;
 } elseif ($password !== $confirm_password) {
-    $confirm_password_error = '<div class="alert alert-danger" role="alert"> Passwords do not match!</div>';
+    $confirm_password_error = '<div class="alert alert-danger" role="alert"> Passwords does not match!</div>';
 }
 
 
 $birthday = date('Y-m-d',strtotime($_POST['birthday']));
 if(empty($_POST['birthday'])) {
-    $timeerror = '<div class="alert alert-success" role="alert">Je moet wel een geboortedatum invullen!</div>';
+    $timeerror = '<div class="alert alert-success" role="alert">You have to write a correct birthdate: year/month/day. !</div>';
 }
 $gender = $_POST['gender'];
 $phone = $_POST['phone'];
