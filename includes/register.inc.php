@@ -114,19 +114,22 @@ $stmt2->execute();
                 <input type="hidden" name="latitude" id="latitude">
                 <input type="hidden" name="longitude" id="longitude">
                 <script>
-                // gebruiker moet wel toestemming geven voor waar hij of zij is
+                // gebruiker moet  toestemming geven voor waar hij of zij is
                 //if (navigator.geolocation) {
                         navigator.geolocation.getCurrentPosition(function(position) {
-                            // afstand wordt opgeslagen in latitude enn longitude
+                            // afstand wordt opgeslagen in latitude enn longitude in db door register.php
 
                             document.getElementById('latitude').value = position.coords.latitude;
                             document.getElementById('longitude').value = position.coords.longitude;
                         }, function(error) {
                             console.error('location error bericht: ' + error.code + ': ' + error.message);
-                        });
-                    } else {
-                        console.error('Location is not supported by your browser.');
-                    }
+                                // Check if the error code is "PERMISSION_DENIED" (1)
+                                if (error.code === 1) {
+
+                                        // de gebruiker wordt terug gestuurd naar de login pagina als hij of zij weigert om een locatie op te geven
+                                    window.location.href = 'index.php';
+                                }
+                            });
                 </script>
 
                 <div class="form-group">
