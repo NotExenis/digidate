@@ -6,7 +6,7 @@
         var longitude = position.coords.longitude;
     
         
-            // verstuur de locatie naar de gebruiker
+            // verstuur de locatie naar de server (register.php)
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
